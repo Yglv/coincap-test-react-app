@@ -1,0 +1,23 @@
+.cointable_element_item {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.cointable_element_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  width: 30px;
+  height: 35px;
+  align-self: center;
+  border-radius: 100%;
+  background-color: rgb(16, 163, 212);
+  color: white;
+}
+
+.cointable_element_button:hover {
+  background-color: rgb(126, 209, 234);
+  border: none;
+}
