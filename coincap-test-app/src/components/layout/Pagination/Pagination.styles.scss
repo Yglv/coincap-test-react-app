@@ -1,0 +1,24 @@
+.pagination{
+  margin-top: 3%;
+  list-style-type: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination_element{
+  display: inline;
+  font-size: 20px;
+
+  margin-right: 50px;
+}
+
+.pagination_element_link{
+  color: rgb(81, 240, 81);
+  text-decoration: none;
+}
+
+.pagination_element_link:hover{
+  color: rgb(126, 209, 234);
+ 
+}
