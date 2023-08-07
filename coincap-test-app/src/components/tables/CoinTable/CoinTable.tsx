@@ -1,12 +1,34 @@
-import { ReactElement } from "react"
+import { ReactElement, useEffect, useState } from "react"
 import CoinTableElement from "../CoinTableElement/CoinTableElement"
 import './CoinTable.styles.scss'
+import axios from "axios"
+import { ICoinData } from "./CoinTable.types"
+import Pagination from "@/components/layout/Pagination/Pagination"
 
 function CoinTable(): ReactElement{
+  const APIURL = 'https://api.coincap.io/v2/assets'
+  const [coinData, setCoinData] = useState<ICoinData[]>([])
+  const [currentPage, setCurrentPage] = useState(1);
+  const [coinsPerPage] = useState(10)
+  const lastCoinIndex = currentPage * coinsPerPage
+  const firstCoinIndex = lastCoinIndex - coinsPerPage
+  const currentCoins = coinData.slice(firstCoinIndex, lastCoinIndex)
+
+  useEffect(() => {
+    axios
+    .get(APIURL)
+    .then(res => {
+      console.log(res.data.data)
+      setCoinData(res.data.data)
+    })
+  }, [])
+
+  const paginate = pageNumber => setCurrentPage(pageNumber)
+
   return (
     <>
-    <p className="cointable_title">Курсы криптовалют</p>
-     <div className="cointable">
+      <p className="cointable_title">Курсы криптовалют</p>
+      <div className="cointable">
         <div className="cointable_element">
           <p className="cointable_header_item">#</p>
           <p className="cointable_header_item">Наименование</p>
@@ -16,15 +38,12 @@ function CoinTable(): ReactElement{
           <p className="cointable_header_item">Объём торгов за 24 часа</p>
           <p className="cointable_header_item">Рыночная капитализация</p>
         </div>
-        <div className="cointable_element">
-          <CoinTableElement num={1} name={"qwe"} price={1000} hour={2.3} day={3.4} volume={20000000} capitalization={200000}/>
-        </div>
-        <div className="cointable_element">
-          <CoinTableElement num={2} name={"qwe"} price={1000} hour={1.1} day={5.7} volume={20000000} capitalization={2000000}/>
-        </div>
-        <div className="cointable_element">
-          <CoinTableElement num={3} name={"qwe"} price={7088000} hour={-2.2} day={7.8} volume={20000000} capitalization={2000000}/>
-        </div>
+        {currentCoins.map(coin => {
+          return (<div className="cointable_element">
+            <CoinTableElement num={coin.rank} name={coin.name} price={Number(coin.priceUsd).toFixed(2)} hour={Number(coin.vwap24Hr).toFixed(2)} day={Number(coin.volumeUsd24Hr).toFixed(2)} volume={Number(coin.volumeUsd24Hr).toFixed(2)} capitalization={Number(coin.marketCapUsd).toFixed(2)}/>
+          </div>)
+        })}
+        <Pagination coinsPerPage={coinsPerPage} totalCoins={coinData.length} paginate={paginate}/>
     </div>
     </>
   )
