@@ -14,7 +14,7 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<MainMenu/>}/>
-          <Route path="/info" element={<CoinInfo/>}/>
+          <Route path="/info/*" element={<CoinInfo/>}/>
         </Routes>
       </div>
     </Router>
