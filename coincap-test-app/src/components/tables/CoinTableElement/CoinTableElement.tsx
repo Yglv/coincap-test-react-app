@@ -10,7 +10,7 @@ function CoinTableElement(props: ICoinTableElement): ReactElement{
     <>
       <p className="cointable_element_item">{props.num}</p>
       <p className="cointable_element_item">
-        <a href={`http://127.0.0.1:5173/info/${props.num}`} className="cointable_element_item_link">
+        <a href={`http://127.0.0.1:5173/info/${props.id}`} className="cointable_element_item_link">
           {props.name}  
         </a>
       </p>
