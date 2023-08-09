@@ -1,0 +1,55 @@
+.portfolio_items {
+  display: grid;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.portfolio_item{
+  display: grid;
+  grid-template-columns: 45% 45% 0%;
+}
+
+.portfolio_title{
+  font-size: 14px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+
+.portfolio_item{
+  display: grid;
+  grid-template-columns: 45% 45% 10%;
+  width: 90%;
+  border: none;
+  border-bottom: 3px solid lightgray;
+}
+
+.portfolio_item_name{
+  font-size: 22px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.portfolio_item_price{
+  font-size: 22px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 500;
+}
+
+.portfolio_item_button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  width: 30px;
+  height: 35px;
+  align-self: center;
+  border-radius: 100%;
+  background-color: rgb(222, 23, 23);
+  color: white;
+}
+
+.portfolio_item_button:hover{
+  border: none;
+  background-color: rgb(222, 72, 72);
+  color: white;
+}

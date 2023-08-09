@@ -34,24 +34,26 @@
   align-self: flex-start;
   font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .coininfo_header_button{
   display: flex;
   justify-content: flex-start;
   width: 30%;
-  background-color: lightgrey;
-  font-size: 16px;
-  color: rgba(27, 26, 39, 0.867);
+  background-color: rgb(72, 201, 72);
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
   margin: 0;
   margin-bottom: 20px;
 }
 
 .coininfo_header_button:hover{
   color:white;
+  background-color: rgb(126, 209, 234);
   border: none;
 }
-
 
 .coininfo_header_items{
   display: grid;
@@ -66,6 +68,7 @@
   justify-content: space-between;
   width: 60%;
   border: 3px solid lightgray;
+  border-left: 10px solid rgb(72, 201, 72);
   border-radius: 15px;
   padding: 5px;
 }
