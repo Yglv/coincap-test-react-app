@@ -2,7 +2,7 @@ export interface ICoinTableElement{
   id: string;
   num: number, 
   name: string,
-  price: string,
+  price: string | number,
   hour?: string,
   day: string,
   volume: string,
