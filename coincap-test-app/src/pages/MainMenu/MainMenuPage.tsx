@@ -1,7 +1,7 @@
 import CoinTable from "@/components/tables/CoinTable/CoinTable"
 import Header from "@/components/layout/Header/Header";
 import { MouseEvent, ReactElement, useState } from "react";
-import Modal from "@/components/layout/Modal/Modal";
+import Modal from "@/components/forms/Modal";
 import { Context } from '@/context/context'
 
 function MainMenu(): ReactElement{
