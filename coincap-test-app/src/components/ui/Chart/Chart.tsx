@@ -51,7 +51,6 @@ function Chart(props: IChart) {
           <XAxis dataKey="date"/>
           <YAxis dataKey="priceUsd" domain={[Math.floor(Math.min(...numArray)), Math.ceil(Math.max(...numArray))]}/>
           <Tooltip />
-          <Legend/>
           <Area type="monotone" dataKey="priceUsd" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
           <Bar dataKey="priceUsd" fill='#88bc90'/>
           <Bar dataKey="time" fill='#777a92'/>
