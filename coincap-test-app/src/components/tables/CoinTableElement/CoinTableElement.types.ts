@@ -1,4 +1,5 @@
 export interface ICoinTableElement{
+  id: string;
   num: number, 
   name: string,
   price: string,
