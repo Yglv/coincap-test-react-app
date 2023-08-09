@@ -1,7 +1,7 @@
 import { ReactElement, useContext } from "react";
 import './Modal.styles.scss'
-import { IModal } from "../layout/Modal/Modal.types";
 import { Context } from "@/context/context";
+import { IModal } from "./Modal.types";
 
 
 export function Modal(props: IModal):ReactElement {
