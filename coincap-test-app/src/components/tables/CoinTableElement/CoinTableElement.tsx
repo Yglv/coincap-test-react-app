@@ -1,11 +1,11 @@
-import { ReactElement } from "react"
+import { ReactElement, useRef } from "react"
 import { ICoinTableElement } from "./CoinTableElement.types"
 import './CoinTableElement.styles.scss'
 import { Context } from '@/context/context'
 import { useContext } from "react"
 
 function CoinTableElement(props: ICoinTableElement): ReactElement{
-  const { setIsActive } = useContext(Context);
+  const { setIsActive, setName, setPrice } = useContext(Context)
   return (
     <>
       <p className="cointable_element_item">{props.num}</p>
@@ -19,7 +19,7 @@ function CoinTableElement(props: ICoinTableElement): ReactElement{
                                     : <p className="cointable_element_item cointable_element_item-green">{props.day}%</p>}
       <p className="cointable_element_item">${props.volume}</p>
       <p className="cointable_element_item">${props.capitalization}</p>
-      <button onClick={() => setIsActive(true)} className="cointable_element_button"><i className="fa-solid fa-plus"></i></button>
+      <button onClick={() => { setIsActive(true); setName(props.name); console.log(props.price) ;setPrice(props.price)}} className="cointable_element_button"><i className="fa-solid fa-plus"></i></button>
     </>
   )
 }
