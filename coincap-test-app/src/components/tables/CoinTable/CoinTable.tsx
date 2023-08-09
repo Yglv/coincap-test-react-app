@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from "react"
+import { ReactElement, useContext, useEffect, useState } from "react"
 import CoinTableElement from "../CoinTableElement/CoinTableElement"
 import './CoinTable.styles.scss'
 import axios from "axios"
@@ -22,7 +22,6 @@ function CoinTable(): ReactElement{
       setCoinData(res.data.data)
     })
   }, [])
-
   const paginate = pageNumber => setCurrentPage(pageNumber)
 
   return (
