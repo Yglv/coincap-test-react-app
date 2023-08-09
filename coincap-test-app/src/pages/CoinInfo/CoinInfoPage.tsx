@@ -57,8 +57,6 @@ function CoinInfo(){
         <div className="coininfo_header_inner">
           <p className="coininfo_header_name">{coinData.name} {coinData.symbol}</p>
           <p className="coininfo_header_price">${Intl.NumberFormat("ru-Ru").format(+Number(coinData.priceUsd).toFixed(2))}</p>
-          <p></p>
-          <button className="coininfo_header_button">Добавить в портфель</button>
         </div>
         <div className="coininfo_header_items">
           <div className="coininfo_header_item">
@@ -79,7 +77,7 @@ function CoinInfo(){
           </div>
           <div className="coininfo_header_item">
             <p className="coininfo_header_item_name">Ликвидность(24ч)</p>
-            <p className="coininfo_header_item_num">${Intl.NumberFormat("ru-Ru").format(+Number(coinData.changePercent24Hr).toFixed(2))}</p>
+            <p className="coininfo_header_item_num">{Intl.NumberFormat("ru-Ru").format(+Number(coinData.changePercent24Hr).toFixed(2))}%</p>
           </div>
         </div>
         <div className="coininfo_main">
