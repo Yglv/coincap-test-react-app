@@ -13,11 +13,27 @@
   height: 35px;
   align-self: center;
   border-radius: 100%;
-  background-color: rgb(16, 163, 212);
+  background-color: rgb(81, 240, 81);
   color: white;
 }
 
 .cointable_element_button:hover {
   background-color: rgb(126, 209, 234);
   border: none;
+}
+
+.cointable_element_item_link {
+  color: black;
+}
+
+.cointable_element_item_link:hover{
+  color:black;
+}
+
+.cointable_element_item-red{
+  color: red;
+}
+
+.cointable_element_item-green{
+  color:rgb(16, 211, 16);
 }
