@@ -1,6 +1,6 @@
 import CoinTable from "@/components/tables/CoinTable/CoinTable"
 import Header from "@/components/layout/Header/Header";
-import { MouseEvent, ReactElement, useEffect, useState } from "react";
+import { MouseEvent, ReactElement, useEffect, useRef, useState } from "react";
 import Modal from "../../components/forms/Modal";
 import { Context } from '@/context/context'
 import axios from "axios"
@@ -9,6 +9,8 @@ import './CoinInfoPage.styles.scss'
 import Chart from "@/components/ui/Chart/Chart";
 import { ICoinPriceHistory } from "./CoinInfoPage.types";
 import backButton from '@/assets/icon_back.png'
+import CoinInfoItems from "@/components/ui/CoinInfoItems/CoinInfoItems";
+import PortfolioService from "@/services/PortfolioService";
 
 
 function CoinInfo(){
@@ -31,8 +33,9 @@ function CoinInfo(){
   const coin = url.split('/').filter(x => x.length > 0).pop()
   const APIURL = `https://api.coincap.io/v2/assets/${coin}`
   const HistoryAPIURL = `https://api.coincap.io/v2/assets/${coin}/history?interval=h1`
+  const [isActive, setIsActive] = useState<boolean>(false)
+  const numInputRef = useRef(null)
   useEffect(() => {
-    console.log('fff')
     axios
     .get(APIURL)
     .then(res => {
@@ -57,35 +60,25 @@ function CoinInfo(){
         <div className="coininfo_header_inner">
           <p className="coininfo_header_name">{coinData.name} {coinData.symbol}</p>
           <p className="coininfo_header_price">${Intl.NumberFormat("ru-Ru").format(+Number(coinData.priceUsd).toFixed(2))}</p>
+          <button className="coininfo_header_button" onClick={() => setIsActive(true)}>Добавить в портфель</button>
         </div>
         <div className="coininfo_header_items">
-          <div className="coininfo_header_item">
-            <p className="coininfo_header_item_name">Рыночная капитализация</p>
-            <p className="coininfo_header_item_num">${Intl.NumberFormat("ru-Ru").format(+Number(coinData.priceUsd).toFixed(2))}</p>
-          </div>
-          <div className="coininfo_header_item">
-            <p className="coininfo_header_item_name">Объём торгов за 24 часа</p>
-            <p className="coininfo_header_item_num">${Intl.NumberFormat("ru-Ru").format(+Number(coinData.volumeUsd24Hr).toFixed(0))}</p>
-          </div>
-          <div className="coininfo_header_item">
-            <p className="coininfo_header_item_name">В обращении</p>
-            <p className="coininfo_header_item_num">${Intl.NumberFormat("ru-Ru").format(+Number(coinData.supply).toFixed(0))}</p>
-          </div>
-          <div className="coininfo_header_item">
-            <p className="coininfo_header_item_name">Максимальный объём</p>
-            <p className="coininfo_header_item_num">${Intl.NumberFormat("ru-Ru").format(+Number(coinData.maxSupply).toFixed(0))}</p>
-          </div>
-          <div className="coininfo_header_item">
-            <p className="coininfo_header_item_name">Ликвидность(24ч)</p>
-            <p className="coininfo_header_item_num">{Intl.NumberFormat("ru-Ru").format(+Number(coinData.changePercent24Hr).toFixed(2))}%</p>
-          </div>
+          <CoinInfoItems coinData={coinData}/>
         </div>
         <div className="coininfo_main">
           <p className="coininfo_main_title">График цены {coinData.name} (24ч)</p>
           <Chart data={coinPriceHistory}/>
         </div>
+        <Modal title='Добавить в портфель' isActive={isActive} onClose={() => setIsActive(false)}>
+          <div className="modal_form">
+            <input type="text" disabled value={coinData.name} name="title" className="modal_input" />
+            <input type="number" ref={numInputRef} placeholder="Введите сумму..." name="sum" className="modal_input" />
+            <button onClick={() => PortfolioService.addToPortfolio(coinData.name,  +numInputRef.current.value, coinData.priceUsd)} className="modal_button">Добавить</button>
+          </div>
+        </Modal>
       </div>
-    </div>)
+    </div>
+  )
 }
 
 export default CoinInfo;
