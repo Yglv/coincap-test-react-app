@@ -1,73 +1,57 @@
-.header_name {
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 25px;
-  font-weight: bold;
-  align-self: flex-start;
-}
-
 .header{
   display: flex;
   flex-direction: column;
   border-bottom: 2px solid lightgray;
   margin-bottom: 50px;
-}
-
-.header_coins {
-  display: flex;
-  justify-items: center;
-  width: 60%;
-  justify-content: space-around;
-}
-
-.header_coins_coin{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 30%;
-  border: 2px solid lightgray;
-  border-radius: 10px;
-  border-left: 10px solid rgb(72, 201, 72);
-}
-
-.header_coin_price {
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 0;
-}
-
-.header_coin_name {
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 18px;
-}
-
-.header_coin_portfolio{
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 24px;
-  font-weight: bold;
-  align-self: flex-start;
-}
-
-.header_coin_info{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-left: 10px;
-  padding-bottom: 30px;
-}
-
-.header_coin_button{
-  display: flex;
-  width: 30%;
-  background-color: rgb(72, 201, 72);
-  color: white;
-  font-size: 18px;
-  font-family: 'Times New Roman', Times, serif;
-  margin: 0;
-}
-
-.header_coin_button:hover{
-  border: none;
-  color: white;
-  background-color: rgb(126, 209, 234);
+  & .header_name{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    font-weight: bold;
+    align-self: flex-start;
+  }
+  & .header_coins{
+    display: flex;
+    justify-items: center;
+    width: 60%;
+    justify-content: space-around;
+    & .header_coins_coin{
+      flex-direction: column;
+      width: 30%;
+      border: 2px solid lightgray;
+      border-radius: 10px;
+      border-left: 10px solid rgb(72, 201, 72);
+      & .header_coin_name{
+        font-size: 18px;
+      }
+      & .header_coin_price{
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 0;
+      }
+    }
+  }
+  & .header_coin_info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 10px;
+    padding-bottom: 30px;
+    & .header_coin_portfolio{
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    & .header_coin_button{
+      display: flex;
+      width: 30%;
+      background-color: rgb(72, 201, 72);
+      color: white;
+      font-size: 18px;
+      margin: 0;
+      &:hover{
+        border: none;
+        background-color: rgb(126, 209, 234);
+      }
+    }
+  }
 }

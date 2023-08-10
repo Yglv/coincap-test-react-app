@@ -1,41 +1,55 @@
 .coininfo{
   display: flex;
   flex-direction: column;
+  & .coininfo_img{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
+  & .coininfo_header{
+    & .coininfo_header_inner{
+      display: flex;
+      flex-direction: column;
+      & .coininfo_header_name{
+        font-size: 24px;
+        align-self: flex-start;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        margin: 0;
+        margin-bottom: 10px;
+      }
+      & .coininfo_header_price{
+        font-size: 38px;
+        margin: 0;
+        align-self: flex-start;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+    }
+    & .coininfo_header_items{
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(1,1fr);
+      grid-template-rows: repeat(5,1fr);
+      margin-bottom: 30px;
+      & .coininfo_header_item{
+        display: flex;
+        justify-content: space-between;
+        width: 60%;
+        border: 3px solid lightgray;
+        border-left: 10px solid rgb(72, 201, 72);
+        border-radius: 15px;
+        padding: 5px;
+      }
+    }
+  }
+  & .coininfo_main{
+    display: flex;
+    flex-direction: column;
+  }
 }
 
-.coininfo_img{
-  position: absolute;
-  top: 15px;
-  left: 15px;
-}
-
-.coininfo_header{
-  display: flex;
-  flex-direction: column;
-}
-
-.coininfo_header_inner{
-  display: flex;
-  flex-direction: column;
-}
-
-.coininfo_header_name{
-  font-size: 24px;
-  align-self: flex-start;
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: bold;
-  margin: 0;
-  margin-bottom: 10px;
-}
-
-.coininfo_header_price{
-  font-size: 38px;
-  margin: 0;
-  align-self: flex-start;
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
 
 .coininfo_header_button{
   display: flex;
@@ -47,30 +61,11 @@
   color: white;
   margin: 0;
   margin-bottom: 20px;
-}
-
-.coininfo_header_button:hover{
-  color:white;
-  background-color: rgb(126, 209, 234);
-  border: none;
-}
-
-.coininfo_header_items{
-  display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(1,1fr);
-  grid-template-rows: repeat(5,1fr);
-  margin-bottom: 30px;
-}
-
-.coininfo_header_item{
-  display: flex;
-  justify-content: space-between;
-  width: 60%;
-  border: 3px solid lightgray;
-  border-left: 10px solid rgb(72, 201, 72);
-  border-radius: 15px;
-  padding: 5px;
+  &:hover{
+    color:white;
+    background-color: rgb(126, 209, 234);
+    border: none;
+  }
 }
 
 .coininfo_header_item_name{
@@ -82,11 +77,6 @@
   font-size: 18px;
   font-family: 'Times New Roman', Times, serif;
   font-weight: 500;
-}
-
-.coininfo_main{
-  display: flex;
-  flex-direction: column;
 }
 
 .coininfo_main_title{

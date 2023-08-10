@@ -2,30 +2,26 @@
   display: grid;
   width: 100%;
   border-radius: 10px;
+  & .cointable_element{
+    display: grid;
+    grid-template-columns: 5% 17% 17% 18% 18% 20% 10%;
+    border-bottom: 2px solid lightgray;
+    &:first-child:hover{
+      background-color: white;
+    }
+    &:hover{
+      background-color: rgb(245,245,245);
+    }
+    & .cointable_header_item{
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
 }
 
 .cointable_title{
   font-family: 'Times New Roman', Times, serif;
   font-size: 24px;
   font-weight: bold;
-}
-
-.cointable_element {
-  display: grid;
-  grid-template-columns: 5% 17% 17% 18% 18% 20% 10%;
-  border-bottom: 2px solid lightgray;
-}
-
-.cointable_element:first-child:hover{
-  background-color: white;
-}
-
-.cointable_element:hover{
-  background-color: rgb(245,245,245);
-}
-
-.cointable_header_item{
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 14px;
-  font-weight: 600;
 }

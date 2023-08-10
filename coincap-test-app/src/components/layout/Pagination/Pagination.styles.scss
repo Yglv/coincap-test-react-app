@@ -4,21 +4,17 @@
   width: 100%;
   display: flex;
   justify-content: center;
-}
-
-.pagination_element{
-  display: inline;
-  font-size: 20px;
-  padding: 10px;
-  margin-right: 50px;
-}
-
-.pagination_element_link{
-  color: rgb(72, 201, 72);
-  text-decoration: none;
-}
-
-.pagination_element_link:hover{
-  color: rgb(126, 209, 234);
- 
+  & .pagination_element{
+    display: inline;
+    font-size: 20px;
+    padding: 10px;
+    margin-right: 50px;
+    & .pagination_element_link{
+      color: rgb(72, 201, 72);
+      text-decoration: none;
+      &:hover{
+        color: rgb(126, 209, 234);
+      }
+    }
+  }
 }

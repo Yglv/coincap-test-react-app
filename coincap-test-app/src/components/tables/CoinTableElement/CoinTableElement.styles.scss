@@ -2,6 +2,10 @@
   font-family: 'Times New Roman', Times, serif;
   font-weight: 400;
   font-size: 18px;
+  & .cointable_element_item_link{
+    color: black;
+    &:hover{}
+  }
 }
 
 .cointable_element_button {
@@ -15,19 +19,10 @@
   border-radius: 100%;
   background-color: rgb(72, 201, 72);
   color: white;
-}
-
-.cointable_element_button:hover {
-  background-color: rgb(126, 209, 234);
-  border: none;
-}
-
-.cointable_element_item_link {
-  color: black;
-}
-
-.cointable_element_item_link:hover{
-  color:black;
+  &:hover{
+    background-color: rgb(126, 209, 234);
+    border: none;
+  }
 }
 
 .cointable_element_item-red{
