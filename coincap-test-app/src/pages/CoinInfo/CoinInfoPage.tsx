@@ -42,7 +42,6 @@ function CoinInfo(){
       console.log(res.data.data)
       setCoinData(res.data.data)
     })
-    
   }, [APIURL])
   useEffect(() => {
     axios
