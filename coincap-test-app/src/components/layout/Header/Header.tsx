@@ -21,7 +21,8 @@ export function Header():ReactElement {
   const lastAddingSum = localStorage.getItem('lastSum')
   let sum = 0
   for (const [key, value] of Object.entries(localStorage)) {
-    sum += +value
+    if (key !== 'lastSum') 
+      sum += +value
   }
   return (
     <div className="header">
