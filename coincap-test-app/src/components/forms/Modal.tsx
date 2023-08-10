@@ -5,7 +5,6 @@ import { IModal } from "./Modal.types";
 
 
 export function Modal(props: IModal):ReactElement {
-  const { setIsActive } = useContext(Context);
   if (!props.isActive){
     return null
   }
@@ -14,7 +13,7 @@ export function Modal(props: IModal):ReactElement {
     <div className="modal_body">
       <div className="modal_header">
         <span className="modal_header_title">{props.title}</span>
-        <span className="modal_header_close" onClick={() => setIsActive(false)}>&times;</span>
+        <span className="modal_header_close" onClick={() => props.onClose()}>&times;</span>
       </div>
       <div className="modal_main">
         {props.children}
