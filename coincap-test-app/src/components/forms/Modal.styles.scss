@@ -9,6 +9,7 @@
   max-width: 100%;
   border-radius: 50px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .modal_body{
@@ -54,6 +55,8 @@
   align-items: center;
   height: 85%;
   width: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y proximity;
 }
 
 .modal_button{
