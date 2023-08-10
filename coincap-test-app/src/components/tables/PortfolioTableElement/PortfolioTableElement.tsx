@@ -8,7 +8,7 @@ function PortfolioTableElement(props: IPortfolio) {
   return (
   <div className="portfolio_item">
     <p className="portfolio_item_name">{props.name}</p>
-    <p className="portfolio_item_price">${props.price}</p>
+    <p className="portfolio_item_price">${Intl.NumberFormat("ru-Ru").format(+Number(props.price).toFixed(2))}</p>
     <button className="portfolio_item_button" onClick={() => handleDelete()}><i className="fa-solid fa-trash"></i></button>
   </div>
   )
