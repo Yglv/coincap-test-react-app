@@ -9,6 +9,7 @@ import backButton from '@/assets/icon_back.png'
 import CoinInfoItems from "@/components/ui/CoinInfoItems/CoinInfoItems";
 import PortfolioService from "@/services/PortfolioService";
 import { useParams } from "react-router-dom";
+import ApiService from "@/services/ApiService";
 
 function CoinInfo(){
   const [coinData, setCoinData] = useState<ICoinData>({
@@ -32,20 +33,10 @@ function CoinInfo(){
   const [isActive, setIsActive] = useState<boolean>(false)
   const numInputRef = useRef(null)
   useEffect(() => {
-    axios
-    .get(APIURL)
-    .then(res => {
-      console.log(res.data.data)
-      setCoinData(res.data.data)
-    })
+    ApiService.getCoinData(APIURL).then(res => setCoinData(res))
   }, [APIURL])
   useEffect(() => {
-    axios
-    .get(HistoryAPIURL)
-    .then(res => {
-      console.log(res.data.data)
-      setCoinPriceHistory(res.data.data)
-    })
+    ApiService.getCoinData(HistoryAPIURL).then(res => setCoinPriceHistory(res))
   }, [HistoryAPIURL])
 
   return (
@@ -68,7 +59,7 @@ function CoinInfo(){
           <form className="modal_form">
             <input type="text" disabled value={coinData.name} name="title" className="modal_input" />
             <input type="number" ref={numInputRef} placeholder="Введите сумму..." name="sum" className="modal_input" />
-            <button type="submit" onClick={() => PortfolioService.addToPortfolio(coinData.name,  +numInputRef.current.value, coinData.priceUsd)} className="modal_button">Добавить</button>
+            <button type="submit" onClick={() => PortfolioService.addToPortfolio(coinData.name, +numInputRef.current.value, coinData.priceUsd)} className="modal_button">Добавить</button>
           </form>
         </Modal>
       </div>
