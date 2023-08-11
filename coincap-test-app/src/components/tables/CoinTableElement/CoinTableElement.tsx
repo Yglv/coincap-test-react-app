@@ -1,4 +1,4 @@
-import { ReactElement, useRef } from "react"
+import { ReactElement } from "react"
 import { ICoinTableElement } from "./CoinTableElement.types"
 import './CoinTableElement.styles.scss'
 import { Context } from '@/context/context'

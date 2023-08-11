@@ -1,7 +1,5 @@
 import Modal from "@/components/forms/Modal";
-import { ICoinData } from "@/components/tables/CoinTable/CoinTable.types";
-import axios from "axios";
-import { ReactElement, useContext, useEffect, useMemo, useState } from "react";
+import { ReactElement, useContext, useMemo, useState } from "react";
 import './Header.styles.scss'
 import PortfolioTable from "../../tables/PortfolioTable/PortfolioTable";
 import { StoreContext } from "@/context/context";

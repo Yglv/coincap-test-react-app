@@ -1,8 +1,6 @@
 import { ReactElement, useContext, useEffect, useMemo, useState } from "react"
 import CoinTableElement from "../CoinTableElement/CoinTableElement"
 import './CoinTable.styles.scss'
-import axios from "axios"
-import { ICoinData } from "./CoinTable.types"
 import Pagination from "@/components/layout/Pagination/Pagination"
 import { StoreContext } from "@/context/context"
 import ApiService from "@/services/ApiService"

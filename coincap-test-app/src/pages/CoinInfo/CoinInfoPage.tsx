@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import Modal from "../../components/forms/Modal";
-import axios from "axios"
 import { ICoinData } from "@/components/tables/CoinTable/CoinTable.types";
 import './CoinInfoPage.styles.scss'
 import Chart from "@/components/ui/Chart/Chart";

@@ -1,4 +1,3 @@
-import { ICoinData } from "@/components/tables/CoinTable/CoinTable.types";
 import { ICoinInfoItems } from "./CoinInfoItems.types";
 
 function CoinInfoItems(props: ICoinInfoItems){

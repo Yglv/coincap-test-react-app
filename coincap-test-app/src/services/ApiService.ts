@@ -1,7 +1,6 @@
 import { ICoinData } from "@/components/tables/CoinTable/CoinTable.types"
 import { ICoinPriceHistory } from "@/pages/CoinInfo/CoinInfoPage.types"
-import axios, { AxiosResponse } from "axios"
-import { useContext } from "react"
+import axios from "axios"
 
 type ApiResponse = ICoinData[] & ICoinData & ICoinPriceHistory[]
 
