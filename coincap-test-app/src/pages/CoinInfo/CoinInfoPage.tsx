@@ -1,8 +1,5 @@
-import CoinTable from "@/components/tables/CoinTable/CoinTable"
-import Header from "@/components/layout/Header/Header";
-import { MouseEvent, ReactElement, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Modal from "../../components/forms/Modal";
-import { Context } from '@/context/context'
 import axios from "axios"
 import { ICoinData } from "@/components/tables/CoinTable/CoinTable.types";
 import './CoinInfoPage.styles.scss'
@@ -11,7 +8,7 @@ import { ICoinPriceHistory } from "./CoinInfoPage.types";
 import backButton from '@/assets/icon_back.png'
 import CoinInfoItems from "@/components/ui/CoinInfoItems/CoinInfoItems";
 import PortfolioService from "@/services/PortfolioService";
-
+import { useParams } from "react-router-dom";
 
 function CoinInfo(){
   const [coinData, setCoinData] = useState<ICoinData>({
@@ -28,11 +25,10 @@ function CoinInfo(){
     vwap24Hr: 0,
     explorer: ''
   })
+  const params = useParams()
   const [coinPriceHistory, setCoinPriceHistory] = useState<ICoinPriceHistory[]>([])
-  const url = window.location.href
-  const coin = url.split('/').filter(x => x.length > 0).pop()
-  const APIURL = `https://api.coincap.io/v2/assets/${coin}`
-  const HistoryAPIURL = `https://api.coincap.io/v2/assets/${coin}/history?interval=h1`
+  const APIURL = `https://api.coincap.io/v2/assets/${params.id}`
+  const HistoryAPIURL = `https://api.coincap.io/v2/assets/${params.id}/history?interval=h1`
   const [isActive, setIsActive] = useState<boolean>(false)
   const numInputRef = useRef(null)
   useEffect(() => {
@@ -69,11 +65,11 @@ function CoinInfo(){
           <Chart data={coinPriceHistory}/>
         </div>
         <Modal title='Добавить в портфель' isActive={isActive} onClose={() => setIsActive(false)}>
-          <div className="modal_form">
+          <form className="modal_form">
             <input type="text" disabled value={coinData.name} name="title" className="modal_input" />
             <input type="number" ref={numInputRef} placeholder="Введите сумму..." name="sum" className="modal_input" />
-            <button onClick={() => PortfolioService.addToPortfolio(coinData.name,  +numInputRef.current.value, coinData.priceUsd)} className="modal_button">Добавить</button>
-          </div>
+            <button type="submit" onClick={() => PortfolioService.addToPortfolio(coinData.name,  +numInputRef.current.value, coinData.priceUsd)} className="modal_button">Добавить</button>
+          </form>
         </Modal>
       </div>
     </div>
