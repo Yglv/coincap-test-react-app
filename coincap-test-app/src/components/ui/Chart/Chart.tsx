@@ -56,8 +56,4 @@ function Chart(props: IChart) {
   )
 }
 
-const getTime = () => {
-
-}
-
 export default Chart;
