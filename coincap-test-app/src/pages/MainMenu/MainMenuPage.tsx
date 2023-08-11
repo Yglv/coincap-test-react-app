@@ -3,8 +3,8 @@ import Header from "@/components/layout/Header/Header";
 import { ReactElement, useEffect, useRef, useState } from "react";
 import Modal from "@/components/forms/Modal";
 import { Context } from '@/context/context'
-import axios from "axios";
 import PortfolioService from "@/services/PortfolioService";
+import ApiService from "@/services/ApiService";
 
 function MainMenu(): ReactElement{
   const [isActive, setIsActive] = useState<boolean>(false)
@@ -12,13 +12,9 @@ function MainMenu(): ReactElement{
   const [id, setId] = useState<string>('')
   const [price, setPrice] = useState<number>(0)
   const numInputRef = useRef(null)
+  const APIURL = `https://api.coincap.io/v2/assets/${id}`
   useEffect(() => {
-    axios
-    .get(`https://api.coincap.io/v2/assets/${id}`)
-    .then(res => {
-      console.log(res.data.data.priceUsd)
-      setPrice(res.data.data.priceUsd)
-    })
+    ApiService.getCoinData(APIURL).then(res => setPrice(res.priceUsd))
   })
 
   return (
