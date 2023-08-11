@@ -1,4 +1,4 @@
-import { ReactElement, useContext, useEffect, useState } from "react"
+import { ReactElement, useContext, useEffect, useMemo, useState } from "react"
 import CoinTableElement from "../CoinTableElement/CoinTableElement"
 import './CoinTable.styles.scss'
 import axios from "axios"
@@ -10,9 +10,9 @@ function CoinTable(): ReactElement{
   const [coinData, setCoinData] = useState<ICoinData[]>([])
   const [currentPage, setCurrentPage] = useState(1)
   const [coinsPerPage] = useState(10)
-  const lastCoinIndex = currentPage * coinsPerPage
-  const firstCoinIndex = lastCoinIndex - coinsPerPage
-  const currentCoins = coinData.slice(firstCoinIndex, lastCoinIndex)
+  const lastCoinIndex = useMemo(() => currentPage * coinsPerPage, [currentPage, coinsPerPage])
+  const firstCoinIndex = useMemo(() => lastCoinIndex - coinsPerPage, [coinsPerPage, lastCoinIndex])
+  const currentCoins = useMemo(() => coinData.slice(firstCoinIndex, lastCoinIndex), [coinData, firstCoinIndex, lastCoinIndex])
 
   useEffect(() => {
     axios

@@ -1,7 +1,7 @@
 import Modal from "@/components/forms/Modal";
 import { ICoinData } from "@/components/tables/CoinTable/CoinTable.types";
 import axios from "axios";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useMemo, useState } from "react";
 import './Header.styles.scss'
 import PortfolioTable from "../../tables/PortfolioTable/PortfolioTable";
 
@@ -17,13 +17,9 @@ export function Header():ReactElement {
       setCoinHeaderData(res.data.data)
     })
   },[])
-  const modifiedData = coinHeaderData.slice(0,3)
+  const modifiedData = useMemo(() => coinHeaderData.slice(0,3), [coinHeaderData])
   const lastAddingSum = localStorage.getItem('lastSum')
-  let sum = 0
-  for (const [key, value] of Object.entries(localStorage)) {
-    if (key !== 'lastSum') 
-      sum += +value
-  }
+  const sumOfCoins = getSum()
   return (
     <div className="header">
       <p className="header_name">Портфель</p>
@@ -37,8 +33,8 @@ export function Header():ReactElement {
         })}
       </div>
       <div className="header_coin_info">
-        <p className="header_coin_portfolio">${(Number.isNaN(sum)) ? 0 : Intl.NumberFormat("ru-Ru").format(+Number(sum).toFixed(2))} + {(lastAddingSum === null) ? 0 : Intl.NumberFormat("ru-Ru").format(+Number(lastAddingSum).toFixed(2))} 
-              ({(Number.isNaN(sum) || lastAddingSum === null) ? 0 : Math.ceil(+lastAddingSum/sum * 100)})%</p>
+        <p className="header_coin_portfolio">${(Number.isNaN(sumOfCoins)) ? 0 : Intl.NumberFormat("ru-Ru").format(+Number(sumOfCoins).toFixed(2))} + {(lastAddingSum === null) ? 0 : Intl.NumberFormat("ru-Ru").format(+Number(lastAddingSum).toFixed(2))} 
+              ({(Number.isNaN(sumOfCoins) || lastAddingSum === null) ? 0 : Math.ceil(+lastAddingSum/sumOfCoins * 100)})%</p>
         <button className="header_coin_button" onClick={() => setIsActive(true)}>Дополнительная информация</button>
       </div>
       <Modal title="Портфель" isActive={isActive} onClose={() => setIsActive(false)}>
@@ -46,6 +42,15 @@ export function Header():ReactElement {
       </Modal>
     </div> 
   )
+}
+
+const getSum = () => {
+  let sum = 0
+  for (const [key, value] of Object.entries(localStorage)) {
+    if (key !== 'lastSum') 
+      sum += +value
+  }
+  return sum
 }
 
 export default Header;
