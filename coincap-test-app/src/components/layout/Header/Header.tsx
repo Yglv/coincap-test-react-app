@@ -1,25 +1,18 @@
 import Modal from "@/components/forms/Modal";
 import { ICoinData } from "@/components/tables/CoinTable/CoinTable.types";
 import axios from "axios";
-import { ReactElement, useEffect, useMemo, useState } from "react";
+import { ReactElement, useContext, useEffect, useMemo, useState } from "react";
 import './Header.styles.scss'
 import PortfolioTable from "../../tables/PortfolioTable/PortfolioTable";
+import { StoreContext } from "@/context/context";
 
 export function Header():ReactElement {
-  const [coinHeaderData, setCoinHeaderData] = useState<ICoinData[]>([])
+  const {store} = useContext(StoreContext)
   const [isActive, setIsActive] = useState<boolean>(false)
-  const APIURL = 'https://api.coincap.io/v2/assets'
-  useEffect(() => {
-    axios
-    .get(APIURL)
-    .then(res => {
-      console.log(res.data.data)
-      setCoinHeaderData(res.data.data)
-    })
-  },[])
-  const modifiedData = useMemo(() => coinHeaderData.slice(0,3), [coinHeaderData])
+  const modifiedData = useMemo(() => store.coinData.slice(0,3), [store.coinData])
   const lastAddingSum = localStorage.getItem('lastSum')
   const sumOfCoins = getSum()
+  
   return (
     <div className="header">
       <p className="header_name">Портфель</p>
